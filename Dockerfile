@@ -7,5 +7,5 @@ RUN apt install -y apt-utils python3-setuptools vim
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN mkdir /project
-COPY project /project/
+COPY . /project/
 WORKDIR /project
