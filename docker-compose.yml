@@ -1,0 +1,25 @@
+version: '3'
+
+
+services:
+    web:
+        depends_on: 
+            - db
+        build: .
+        volumes: 
+            - .:/project
+        ports:
+            - "80:8000"
+        command: bash -c "gunicorn --bind 0.0.0.0:8000 project.wsgi"
+
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+            - POSTGRES_DB
+        volumes:
+            - budgetapp:/var/lib/postgresql/data
+
+volumes:
+    budgetapp:
