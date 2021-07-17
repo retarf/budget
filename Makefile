@@ -8,6 +8,7 @@ help:
 	@echo "migrate:\t\t migrate"
 	@echo "shell:\t\t shell"
 	@echo "logs:\t\t logs"
+	@echo "build:\t\t logs"
 
 .PHONY: up
 up:
@@ -16,6 +17,10 @@ up:
 .PHONY:
 down: up
 	@docker-compose down
+
+.PHONY:
+build: down
+	@docker-compose build web
 
 .PHONY:
 stop: up
