@@ -1,0 +1,10 @@
+<a href="{% url 'period-list' %}">Add period</a>
+{% if object_list %}
+    <li>
+        {% for period in period_list %}
+            <ul>
+                {{ period }}
+            </ul>
+        {% endfor %}
+    </li>
+{% endif %}
