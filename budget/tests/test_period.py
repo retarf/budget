@@ -1,6 +1,7 @@
 import pytest
 import datetime
 from budget.tests import PeriodFactory
+from budget.models import Period
 
 
 @pytest.fixture()
@@ -19,10 +20,14 @@ class TestPeriodView:
         assert str(response.context['period_list'][0]) == "2021-07"
 
     def test_detail_view(self, client, period):
-        url = f'/budget/period/{period.id}/'
-        response = client.get(url)
+        response = client.get(f'/budget/period/{period.id}/')
         assert response.status_code == 200
 
-    def test_create_view(self, client, period):
+    def test_create_view(self, client):
         response = client.get('/budget/period/create/')
         assert response.status_code == 200
+
+    def test_delete_view(self, client, period):
+        response = client.post(f'/budget/period/{period.id}/delete/')
+        assert response.status_code == 302
+        assert len(Period.objects.all()) == 0

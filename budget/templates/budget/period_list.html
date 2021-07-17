@@ -1,9 +1,9 @@
-<a href="{% url 'period-list' %}">Add period</a>
+<a href="{% url 'period-create' %}">Add period</a>
 {% if object_list %}
     <li>
         {% for period in period_list %}
             <ul>
-                {{ period }}
+                <a href="{{ period.get_absolute_url }}">{{ period }}</a>
             </ul>
         {% endfor %}
     </li>

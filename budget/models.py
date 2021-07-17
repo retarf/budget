@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Period(models.Model):
-    name = models.DateField()
+    name = models.DateField(unique=True)
 
     def __str__(self):
         return self.name.strftime("%Y-%m")
