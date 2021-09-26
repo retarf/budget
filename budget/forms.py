@@ -1,6 +1,6 @@
 from django import forms
 
-from budget.models import Period
+from budget.models import Period, PlannedEntry, RealEntry
 
 
 class PeriodForm(forms.ModelForm):
@@ -10,3 +10,8 @@ class PeriodForm(forms.ModelForm):
         model = Period
         fields = ['name']
 
+
+class EntryForm(forms.ModelForm):
+    class Meta:
+        model = PlannedEntry
+        fields = '__all__'

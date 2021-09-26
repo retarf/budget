@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 
-from budget.models import Period
+from budget.models import Period, PlannedEntry
 from django.urls import reverse_lazy
 from budget.forms import PeriodForm
 
@@ -31,3 +31,25 @@ class PeriodUpdateView(DetailView):
 class PeriodDeleteView(DeleteView):
     model: Type[Period] = Period
     success_url = reverse_lazy('period-list')
+
+
+class PlannedEntryListView(ListView):
+    model: Type[Period] = PlannedEntry
+
+
+class PlannedEntryDetailView(DetailView):
+    model: Type[Period] = PlannedEntry
+
+
+class PlannedEntryCreateView(CreateView):
+    model: Type[Period] = PlannedEntry
+    fields = '__all__'
+
+
+class PlannedEntryUpdateView(DetailView):
+    model: Type[Period] = PlannedEntry
+
+
+class PlannedEntryDeleteView(DeleteView):
+    model: Type[Period] = PlannedEntry
+    success_url = reverse_lazy('planned-list')
