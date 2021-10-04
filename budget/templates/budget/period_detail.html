@@ -1,1 +1,23 @@
 <h1>{{ period }}</h1>
+
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Planned</th>
+        <th>Real</th>
+    </tr>
+    {% if period.entry_set.all %}
+        {% for entry in period.entry_set.all %}
+            <tr>
+                <td>
+                    {{ entry.description }}
+                </td>
+                <td>
+                    {{ entry.value }}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+
+<a href="{% url 'entry-create' %}">add entry</a>

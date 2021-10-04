@@ -10,6 +10,22 @@ PERIOD_RE = r"\d{4}-[0-1]\d"
 period_validator = RegexValidator(regex=re.compile(PERIOD_RE))
 
 
+MONTHS = (
+    ('01', '01'),
+    ('02', '02'),
+    ('03', '03'),
+    ('04', '04'),
+    ('05', '05'),
+    ('06', '06'),
+    ('07', '07'),
+    ('08', '08'),
+    ('09', '09'),
+    ('10', '10'),
+    ('11', '11'),
+    ('12', '12'),
+)
+
+
 class Period(models.Model):
     name = models.CharField(max_length=7, unique=True, validators=[period_validator])
 
@@ -29,7 +45,7 @@ class BaseEntry(models.Model):
         abstract = True
 
 
-class PlannedEntry(BaseEntry):
+class Entry(BaseEntry):
     INCOME = 'in'
     EXPENSE = 'ex'
     CHOICES = [
@@ -38,13 +54,10 @@ class PlannedEntry(BaseEntry):
     ]
     description = models.CharField(max_length=120)
     period = models.ForeignKey('Period', on_delete=models.CASCADE)
-    type = models.CharField(choices=CHOICES, default=EXPENSE)
+    type = models.CharField(max_length=2, choices=CHOICES, default=EXPENSE)
     repetitive = models.BooleanField()
-    repeat_month = models.DateField()
-
-    class Meta:
-        abstract = True
+    repeat_month = models.CharField(max_length=2, choices=MONTHS, default=MONTHS[0][0])
 
 
-class RealEntry(BaseEntry):
-    planned = models.ForeignKey('PlannedEntry', on_delete=models.CASCADE)
+class Flow(BaseEntry):
+    entry = models.ForeignKey('Entry', on_delete=models.CASCADE)

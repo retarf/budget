@@ -1,17 +1,15 @@
 from django import forms
 
-from budget.models import Period, PlannedEntry, RealEntry
-
-
-class PeriodForm(forms.ModelForm):
-    name = forms.DateField()
-
-    class Meta:
-        model = Period
-        fields = ['name']
+from budget.models import Period, Entry
 
 
 class EntryForm(forms.ModelForm):
     class Meta:
-        model = PlannedEntry
+        model = Entry
         fields = '__all__'
+
+
+class PeriodForm(forms.ModelForm):
+    class Meta:
+        model = Period
+        fields = ["name"]

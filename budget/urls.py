@@ -4,10 +4,10 @@ from budget.views import (
     PeriodCreateView,
     PeriodDetailView,
     PeriodDeleteView,
-    # PlannedListView,
-    # PlannedCreateView,
-    # PlannedDetailView,
-    # PlannedDeleteView,
+    EntryListView,
+    EntryCreateView,
+    EntryDetailView,
+    EntryDeleteView,
 )
 
 urlpatterns = []
@@ -21,10 +21,10 @@ urlpatterns.extend([
     path('period/<int:pk>/delete/', PeriodDeleteView.as_view(), name='period-delete'),
 ])
 
-# Planned
-# urlpatterns.extend([
-#     path('period/<int:pk>/planned/', PlannedListView.as_view(), name='planned-list'),
-#     path('period/<int:pk>/planned/<int:pk>/', PlannedDetailView.as_view(), name='planned-detail'),
-#     path('period/<int:pk>/planned/create/', PlannedCreateView.as_view(), name='planned-create'),
-#     path('period/<int:pk>/planned/<int:pk>/delete/', PlannedDeleteView.as_view(), name='period-delete'),
-# ])
+# Entry
+urlpatterns.extend([
+    path('entry/', EntryListView.as_view(), name='entry-list'),
+    path('entry/<int:pk>/', EntryDetailView.as_view(), name='entry-detail'),
+    path('entry/create/', EntryCreateView.as_view(), name='entry-create'),
+    path('entry/<int:pk>/delete/', EntryDeleteView.as_view(), name='entry-delete'),
+])
