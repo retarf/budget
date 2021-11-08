@@ -1,4 +1,4 @@
-<h1>{{ period }}</h1>
+<h1>{{ period.name }}</h1>
 
 <table>
     <tr>
@@ -20,4 +20,4 @@
     {% endif %}
 </table>
 
-<a href="{% url 'entry-create' %}">add entry</a>
+<a href="{% url 'entry-create' period.id %}">add entry</a>

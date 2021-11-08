@@ -1,6 +1,7 @@
 from typing import Type
 
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.shortcuts import render
 
 from budget.models import Period, Entry
 from django.urls import reverse_lazy
@@ -41,6 +42,10 @@ class EntryCreateView(CreateView):
     model: Type[Period] = Entry
     fields = '__all__'
     success_url = reverse_lazy('entry-list')
+
+    def get(request, *args, **kwargs):
+        return render(request, "budget/entry_form.html", {"args": args})
+
 
 
 class EntryUpdateView(DetailView):
