@@ -1,0 +1,20 @@
+<a href="{% url 'entry-create' %}">Add entry</a>
+{% if object_list %}
+    <table>
+        <th>
+            <th>Lp</th>
+            <th>Description</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            {% for entry in period_list %}
+            <td>
+                <a href="{{ entry.get_absolute_url }}">{{ entry.description }}</a>
+            </td>
+            <td>
+                {{ entry.value }}
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+{% endif %}
